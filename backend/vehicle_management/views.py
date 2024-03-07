@@ -49,7 +49,7 @@ class CarCreateView(CreateView):
     template_name = "cars/create.html"
 
     def get_success_url(self):
-        return reverse_lazy("car-details", kwargs={"pk": self.object.pk})
+        return reverse_lazy("vehicle_management:car-details", kwargs={"pk": self.object.pk})
 
 
 class CarUpdateView(UpdateView):
@@ -58,7 +58,7 @@ class CarUpdateView(UpdateView):
     template_name = "cars/create.html"
 
     def get_success_url(self):
-        return reverse_lazy("car-details", kwargs={"pk": self.object.pk})
+        return reverse_lazy("vehicle_management:car-details", kwargs={"pk": self.object.pk})
 
 
 def car_delete(request, pk):

@@ -7,7 +7,7 @@
             <ul class="list-group">
                 {% for car in cars %}
                     <li class="list-group-item">
-                        <a href="{% url 'car-details' car.id %}">{{ car.title }}</a>
+                        <a href="{% url 'vehicle_management:car-details' car.id %}">{{ car.title }}</a>
                     </li>
                 {% endfor %}
             </ul>
