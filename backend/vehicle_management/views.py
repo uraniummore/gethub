@@ -30,7 +30,7 @@ class CarForm(forms.ModelForm):
             "make",
             "model",
             "year",
-            "colour",
+            "color",
             "mileage",
             "vin",
         ]
@@ -39,7 +39,7 @@ class CarForm(forms.ModelForm):
             "make": forms.TextInput(attrs={"class": "form-control"}),
             "model": forms.TextInput(attrs={"class": "form-control"}),
             "year": forms.NumberInput(attrs={"class": "form-control"}),
-            "colour": forms.TextInput(attrs={"class": "form-control"}),
+            "color": forms.TextInput(attrs={"class": "form-control"}),
             "mileage": forms.NumberInput(attrs={"class": "form-control"}),
             "vin": forms.TextInput(attrs={"class": "form-control"}),
         }
