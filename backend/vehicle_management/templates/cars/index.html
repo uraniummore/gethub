@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Cars list</h1>
+    {% if cars %}
+        <div class="col-md-3">
+            <ul class="list-group">
+                {% for car in cars %}
+                    <li class="list-group-item">
+                        <a href="{% url 'car-details' car.id %}">{{ car.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% else %}
+        No cars ):
+    {% endif %}
+{% endblock %}

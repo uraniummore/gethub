@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ car.title }}</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">Make</th>
+            <td>{{ car.make }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Model</th>
+            <td>{{ car.model }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Year</th>
+            <td>{{ car.year }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Colour</th>
+            <td>{{ car.colour }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Mileage</th>
+            <td>{{ car.mileage }}</td>
+        </tr>
+        <tr>
+            <th scope="row">VIN</th>
+            <td>{{ car.vin }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-md-8">
+            <button class="btn btn-primary" id="delete-button">Delete</button>
+            <a href="{% url 'vehicle_management:car-update' pk=car.id %}" class="btn btn-primary">Edit</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        document.getElementById("delete-button").addEventListener("click", e => {
+            e.preventDefault();
+            const deletionUrl = "{% url "vehicle_management:car-delete" pk=car.id %}";
+
+            const successCallback = successfulResult => {
+                const responseText = successfulResult.response;
+                const jsonContent = JSON.parse(responseText);
+                if (jsonContent.message === "Car deleted.") {
+                    window.location.href = "{% url 'vehicle_management:car-index' %}";
+                }
+            };
+
+            const failCallback = failedResult => {
+                const statusCode = failedResult.status;
+                alert(`Deletion failed with code ${statusCode}. See console for details.`);
+                console.error(failedResult);
+            };
+
+            httpRequest(deletionUrl, successCallback, failCallback, "DELETE");
+        });
+    </script>
+{% endblock %}
