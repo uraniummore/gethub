@@ -15,7 +15,6 @@ class Car(models.Model):
             MaxValueValidator(timezone.now().year, message="Car cannot be manufactured in future yet.")
         ]
     )
-    color = models.CharField(max_length=100)
     mileage = models.IntegerField(validators=[car_validator.validate_mileage])
     vin = models.CharField(max_length=17, unique=True, validators=[car_validator.validate_vin])
 
